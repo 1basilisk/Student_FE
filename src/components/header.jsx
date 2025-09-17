@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-
+import { jwtDecode } from 'jwt-decode';
 function Header() {
   const navigate = useNavigate();
 
@@ -10,7 +10,7 @@ function Header() {
       const user = jwtDecode(token);
       role = user.role;
     } catch (err) {
-      console.error('Invalid token');
+      console.error(err);
     }
   }
 
@@ -20,7 +20,8 @@ function Header() {
     navigate('/login');
   };
 
-  return (
+  return (<>
+  
     <header className="fixed top-0 left-0 right-0 bg-gray-800 text-white p-4 flex justify-between items-center shadow z-50">
       <h1 className="text-xl font-bold cursor-pointer" onClick={() => navigate('/')}>
         Student Management System
@@ -50,6 +51,8 @@ function Header() {
         )}
       </nav>
     </header>
+     <div className="pt-16"></div>
+  </>
   );
 }
 

@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
+     <div className="dark bg-gray-900 text-white min-h-screen">
     <BrowserRouter>
       <Routes>
         {/* Public routes */}
@@ -45,6 +46,7 @@ function App() {
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </BrowserRouter>
+    </div>
   );
 }
 
