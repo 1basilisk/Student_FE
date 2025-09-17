@@ -1,8 +1,8 @@
 import axios from 'axios';
-require('dotenv').config();
 
+// Use Vite env variable
 const api = axios.create({
-  baseURL: process.env.BACKEND_API_BASE_URL,
+  baseURL: import.meta.env.VITE_BACKEND_API_BASE_URL,
 });
 
 export default api;
