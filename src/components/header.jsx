@@ -31,6 +31,16 @@ function Header() {
         {token ? (
           <>
 
+            {role === 'admin' ? (
+              <button onClick={() => navigate('/admin-dashboard')} className="hover:underline">
+                 Dashboard
+              </button>
+            ) : (
+              <button onClick={() => navigate('/student-dashboard')} className="hover:underline">
+                Dashboard
+              </button>
+            )}
+
             <button onClick={() => navigate('/change-password')} className="hover:underline">
               Change Password
             </button>
