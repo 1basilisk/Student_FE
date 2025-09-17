@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import api from '../api';
 import { useNavigate } from 'react-router-dom';
+import Header from './header';
 
 
 function Signup() {
@@ -42,6 +43,8 @@ function Signup() {
   };
 
   return (
+    <>
+    <Header/>
     <div className="max-w-md mx-auto p-8 bg-white shadow rounded-lg mt-12">
   <h2 className="text-2xl font-bold text-center mb-6">Student Signup</h2>
 
@@ -114,7 +117,7 @@ function Signup() {
   </button>
 </div>
 
-
+  </>
   );
 }
 

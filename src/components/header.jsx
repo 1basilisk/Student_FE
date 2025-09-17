@@ -23,7 +23,7 @@ function Header() {
   return (
     <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
       <h1 className="text-xl font-bold cursor-pointer" onClick={() => navigate('/')}>
-        My App
+        Student Management System
       </h1>
 
       <nav className="space-x-4">
