@@ -1,59 +1,9 @@
-// import { useState, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import api from '../api';
-// import { jwtDecode } from 'jwt-decode';
 
-
-// function StudentDashboard() {
-//   const [profile, setProfile] = useState(null);
-//   const navigate = useNavigate();
-//   const token = localStorage.getItem('token');
-  
-
-//   useEffect(() => {
-//     const fetchProfile = async () => {
-//       try {
-//         const res = await api.get(`/students/me`, {
-//           headers: { Authorization: `Bearer ${token}` },
-//         });
-//         setProfile(res.data);
-//       } catch (err) {
-//         console.error('Failed to load profile');
-//       }
-//     };
-
-//     fetchProfile();
-//   }, []);
-
-//   const handleLogout = () => {
-//     localStorage.removeItem('token');
-//     navigate('/login');
-//   };
-
-//   return (
-//     <div style={{ padding: '2rem' }}>
-//       <h2>Student Dashboard</h2>
-
-//       {profile ? (
-//         <div>
-//           <p><strong>Name:</strong> {profile.name}</p>
-//           <p><strong>Email:</strong> {profile.email}</p>
-//           <p><strong>Course:</strong> {profile.course}</p>
-//           <p><strong>Enrollment Date:</strong> {new Date(profile.enrollmentDate).toLocaleDateString()}</p>
-//         </div>
-//       ) : (
-//         <p>Loading profile...</p>
-//       )}
-
-//       <button onClick={handleLogout}>Logout</button>
-//     </div>
-//   );
-// }
-
-// export default StudentDashboard;
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import api from '../api';// Your configured Axios instance
 
+const navigate = useNavigate();
 export default function StudentDashboard() {
   const [student, setStudent] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -92,7 +42,7 @@ export default function StudentDashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    window.location.href = '/login';
+    navigate('/login');
   };
 
   if (loading) {
