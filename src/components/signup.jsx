@@ -5,6 +5,8 @@ import Header from './header';
 
 function Signup() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);  
+
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -36,6 +38,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); 
 
     try {
       const res = await api.post('/auth/signup', form);
@@ -46,6 +49,9 @@ function Signup() {
       console.error(err);
       const errorMsg = err.response?.data?.msg || 'Signup failed';
       setMessage(errorMsg);
+    }
+    finally {
+      setLoading(false); 
     }
   };
 
@@ -107,10 +113,18 @@ function Signup() {
 
           <button
             type="submit"
-            disabled={!!error}
+            disabled={!!error || loading}
             className="w-full bg-green-600 hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 text-white py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed transition"
           >
-            Sign Up
+            {loading ? (
+              <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+              </svg>
+            ) : null}
+
+            {loading ? 'Signing up...' : 'Signup'}
+            
           </button>
         </form>
 

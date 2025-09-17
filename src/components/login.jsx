@@ -6,17 +6,12 @@ import Header from './header';
 
 function Login() {
   const navigate = useNavigate();
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-  });
+  const [form, setForm] = useState({ email: '', password: '' });
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   useEffect(() => {
@@ -30,6 +25,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); 
     try {
       const res = await api.post('/auth/login', form);
       setMessage(res.data.msg || 'Login successful');
@@ -43,6 +39,8 @@ function Login() {
       console.error(err);
       const errorMsg = err.response?.data?.msg || 'Login failed';
       setMessage(errorMsg);
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -83,9 +81,16 @@ function Login() {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white py-2 rounded transition"
+            disabled={loading} // disable button while loading
+            className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white py-2 rounded transition flex items-center justify-center"
           >
-            Login
+            {loading ? (
+              <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+              </svg>
+            ) : null}
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
