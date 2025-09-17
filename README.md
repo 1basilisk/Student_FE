@@ -48,6 +48,11 @@ frontend/
 
 ---
 
+## Behaviour
+- if a user is logged in, login page will automatically redirect to appropriate dashboard according to role
+- jwt token will expire after 1 hour
+- password for students added by admin will be firstname@123. for utkarsh sharma, password will be utkarsh@123
+
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18 or newer recommended)

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../api'; // Axios instance
+import api from '../api';
 import Header from './header';
 
 function AdminDashboard() {
