@@ -1,7 +1,10 @@
 
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import api from '../api';// Your configured Axios instance
+import api from '../api';
+import Header from './header';
+
+
 
 
 export default function StudentDashboard() {
@@ -51,9 +54,12 @@ export default function StudentDashboard() {
     }
 
     return (
+<>
+        <Header/>
         <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
             <div className="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full">
                 <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Student Dashboard</h1>
+                
 
                 <div className="space-y-4">
                     <div>
@@ -128,14 +134,10 @@ export default function StudentDashboard() {
                         </button>
                     )}
 
-                    <button
-                        onClick={handleLogout}
-                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
-                    >
-                        Logout
-                    </button>
+                    
                 </div>
             </div>
         </div>
+        </>
     );
 }

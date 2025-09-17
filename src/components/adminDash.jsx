@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api'; // Axios instance
+import Header from './header';
 
 function AdminDashboard() {
   const [students, setStudents] = useState([]);
@@ -103,20 +104,13 @@ function AdminDashboard() {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
-  };
 
   return (
+<>
+    <Header/>
     <div className="p-8">
       <h2 className="text-2xl font-bold mb-4">Admin Dashboard</h2>
-      <button
-        onClick={handleLogout}
-        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
-      >
-        Logout
-      </button>
+
 
       <div className="my-6">
         <button
@@ -267,6 +261,7 @@ function AdminDashboard() {
         <p>No students found.</p>
       )}
     </div>
+    </>
   );
 }
 

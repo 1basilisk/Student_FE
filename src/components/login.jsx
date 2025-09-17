@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import api from '../api';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
+import Header from './header';
 
 function login() {
     const navigate = useNavigate();
@@ -16,6 +17,14 @@ function login() {
             [e.target.name]: e.target.value,
         });
     };
+        useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            const user = jwtDecode(token);
+            if (user.role === 'admin') navigate('/admin-dashboard');
+            else navigate('/student-dashboard');
+        }
+    }, [navigate]);
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -36,6 +45,8 @@ function login() {
     };
 
     return (
+        <>
+        <Header/>
         <div className="max-w-md mx-auto p-8 bg-white shadow rounded-lg mt-12">
             <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
 
@@ -84,6 +95,7 @@ function login() {
             </button>
         </div>
 
+                </>
     );
 }
 
