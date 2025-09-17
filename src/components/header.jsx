@@ -21,7 +21,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
+    <header className="fixed top-0 left-0 right-0 bg-gray-800 text-white p-4 flex justify-between items-center shadow z-50">
       <h1 className="text-xl font-bold cursor-pointer" onClick={() => navigate('/')}>
         Student Management System
       </h1>
@@ -29,17 +29,6 @@ function Header() {
       <nav className="space-x-4">
         {token ? (
           <>
-            {role === 'admin' && (
-              <button onClick={() => navigate('/admin-dashboard')} className="hover:underline">
-                Admin Dashboard
-              </button>
-            )}
-
-            {role === 'student' && (
-              <button onClick={() => navigate('/student-dashboard')} className="hover:underline">
-                Student Dashboard
-              </button>
-            )}
 
             <button onClick={() => navigate('/change-password')} className="hover:underline">
               Change Password
